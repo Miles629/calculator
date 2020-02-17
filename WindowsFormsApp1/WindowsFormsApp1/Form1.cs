@@ -361,6 +361,7 @@ namespace WindowsFormsApp1
             try
             {
                 linkLabel1.LinkVisited = true;
+                linkLabel1.Text = "你的star是对我最大的鼓励！";
                 System.Diagnostics.Process.Start("https://github.com/Miles629/calculator");
             }
             catch (Exception ex)
