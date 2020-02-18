@@ -34,7 +34,10 @@ namespace WindowsFormsApp1
             //label4.Text = "=";
             double a1, a2;
             if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+            {
                 label3.Text = calculate(a1, a2, op).ToString();
+                textBox1.Text = textBox1.Text + label3.Text + "\r\n";
+            }
             else
                 label3.Text = "NaN";
             haveop = 0;
@@ -73,13 +76,20 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+                {
                     label1.Text = calculate(a1, a2, op).ToString();
+                    label2.Text = "";
+                    label3.Text = label1.Text;
+                    textBox1.Text = textBox1.Text + label1.Text + "\r\n";
+                }
                 else
                     label3.Text = "NaN";
             }
             if(haven1==0&&havere==1)//一则运算过后立刻运算
             {
                 label1.Text = label3.Text;
+                label2.Text = "";
+                haven1 = 1;
             }
             else
             {
@@ -99,13 +109,20 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+                {
                     label1.Text = calculate(a1, a2, op).ToString();
+                    label2.Text = "";
+                    label3.Text = label1.Text;
+                    textBox1.Text = textBox1.Text + label1.Text + "\r\n";
+                }
                 else
                     label3.Text = "NaN";
             }
-            if (haven1 == 0 && havere == 1)
+            if (haven1 == 0 && havere == 1)//一则运算过后立刻运算
             {
                 label1.Text = label3.Text;
+                label2.Text = "";
+                haven1 = 1;
             }
             else
             {
@@ -124,16 +141,21 @@ namespace WindowsFormsApp1
                 string n2 = label2.Text;
                 string op = label5.Text;
                 double a1, a2;
-                if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+                if(double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+                {
                     label1.Text = calculate(a1, a2, op).ToString();
+                    label2.Text = "";
+                    label3.Text = label1.Text;
+                    textBox1.Text = textBox1.Text + label1.Text + "\r\n";
+                }
                 else
                     label3.Text = "NaN";
             }
-            if (haven1 == 0 && havere == 1)
+            if (haven1 == 0 && havere == 1)//一则运算过后立刻运算
             {
                 label1.Text = label3.Text;
-                //label5.Text = "-";
-                //haveop = 1;
+                label2.Text = "";
+                haven1 = 1;
             }
             else
             {
@@ -154,16 +176,20 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
+                {
                     label1.Text = calculate(a1, a2, op).ToString();
+                    label2.Text = "";
+                    label3.Text = label1.Text;
+                    textBox1.Text = textBox1.Text + label1.Text + "\r\n";
+                }
                 else
                     label3.Text = "NaN";
             }
-            if (haven1 == 0 && havere == 1)
+            if (haven1 == 0 && havere == 1)//一则运算过后立刻运算
             {
                 label1.Text = label3.Text;
-                //label5.Text = "+";
-                //haveop = 1;
-                
+                label2.Text = "";
+                haven1 = 1;
             }
             else
             {
@@ -370,6 +396,16 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Unable to open link that was clicked.");
                 linkLabel1.Text = "啊嘞，出错了？再次点击向作者反馈";
             }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            //Form1.
         }
 
         private void button1_Click(object sender, EventArgs e)
