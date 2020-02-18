@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Formmain : Form
+    public partial class Form1 : Form
     {
-        public Formmain()
+        public Form1()
         {
             InitializeComponent();
         }
@@ -33,11 +33,7 @@ namespace WindowsFormsApp1
             //label4.Text = "=";
             double a1, a2;
             if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
-            {
                 label3.Text = calculate(a1, a2, op).ToString();
-                history.Text = history.Text + label3.Text + "//";
-            }
-
             else
                 label3.Text = "NaN";
             haveop = 0;
@@ -76,11 +72,7 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
-                {
-                    label3.Text = calculate(a1, a2, op).ToString();
-                    history.Text = history.Text + label3.Text + "//";
-                }
-                //label1.Text = calculate(a1, a2, op).ToString();
+                    label1.Text = calculate(a1, a2, op).ToString();
                 else
                     label3.Text = "NaN";
             }
@@ -106,10 +98,7 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
-                {
-                    label3.Text = calculate(a1, a2, op).ToString();
-                    history.Text = history.Text + label3.Text + "//";
-                }//label1.Text = calculate(a1, a2, op).ToString();
+                    label1.Text = calculate(a1, a2, op).ToString();
                 else
                     label3.Text = "NaN";
             }
@@ -135,10 +124,7 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
-                {
-                    label3.Text = calculate(a1, a2, op).ToString();
-                    history.Text = history.Text + label3.Text + "//";
-                }//label1.Text = calculate(a1, a2, op).ToString();
+                    label1.Text = calculate(a1, a2, op).ToString();
                 else
                     label3.Text = "NaN";
             }
@@ -167,10 +153,7 @@ namespace WindowsFormsApp1
                 string op = label5.Text;
                 double a1, a2;
                 if (double.TryParse(n1, out a1) && double.TryParse(n2, out a2))
-                {
-                    label3.Text = calculate(a1, a2, op).ToString();
-                    history.Text = history.Text + label3.Text + "//";
-                }//label1.Text = calculate(a1, a2, op).ToString();
+                    label1.Text = calculate(a1, a2, op).ToString();
                 else
                     label3.Text = "NaN";
             }
@@ -386,11 +369,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Unable to open link that was clicked.");
                 linkLabel1.Text = "啊嘞，出错了？再次点击向作者反馈";
             }
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            history.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
