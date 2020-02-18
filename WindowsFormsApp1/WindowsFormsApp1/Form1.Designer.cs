@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class Formmain
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -51,6 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.history = new System.Windows.Forms.TextBox();
+            this.button17 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -293,11 +295,33 @@
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Red;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // history
+            // 
+            this.history.BackColor = System.Drawing.SystemColors.Info;
+            this.history.Location = new System.Drawing.Point(284, 70);
+            this.history.Multiline = true;
+            this.history.Name = "history";
+            this.history.Size = new System.Drawing.Size(123, 316);
+            this.history.TabIndex = 23;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(284, 28);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(123, 36);
+            this.button17.TabIndex = 24;
+            this.button17.Text = "清空历史记录";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // Formmain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 427);
+            this.BackColor = System.Drawing.SystemColors.Info;
+            this.ClientSize = new System.Drawing.Size(430, 427);
+            this.Controls.Add(this.button17);
+            this.Controls.Add(this.history);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -321,7 +345,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "Formmain";
             this.Text = "计算器v1.0发布版（bug已全de）--by.马草原";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -354,6 +378,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.TextBox history;
+        private System.Windows.Forms.Button button17;
     }
 }
 
