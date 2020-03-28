@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Homework5
 {
-    class OrderItem
+    [Serializable]
+    public class OrderItem
     {
         //public OrderItem()
         //{
@@ -19,18 +20,21 @@ namespace Homework5
         //    Console.WriteLine("输入数量：");
         //    Int32.TryParse(Console.ReadLine(), out number);
         //}
-        public OrderItem(string a, int b, double c, int d)
+        public OrderItem(string coname, int idd, double pprice, int num)
         {
 
-            commodity_name = a;
-            id = b;
-            per_price = c;
-            number = d;
+            commodity_name = coname;
+            id = idd;
+            per_price = pprice;
+            number = num;
         }
-        public string commodity_name { get; }
-        public int id { get; }
-        public double per_price { get; }
-        public int number { get; }
+        public OrderItem() 
+        {
+        }
+        public string commodity_name { get; set; }
+        public int id { get; set; }
+        public double per_price { get; set; }
+        public int number { get; set; }
         public override string ToString()
         {
             return ($"商品名：{commodity_name}\t单价：{per_price}\t数量：{number}\r\n");

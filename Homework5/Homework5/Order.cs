@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Homework5
 {
-    class Order
+    [Serializable]
+    public class Order
     {
-        public Order(string q, string w, int e, double r, List<OrderItem> list)
+        public Order(string onum, string cus, int tnum, double tp, List<OrderItem> list)
         {
 
             //Console.WriteLine("输入订单号：");
@@ -17,10 +18,10 @@ namespace Homework5
             //customer = Console.ReadLine();
             //Console.WriteLine("输入总商品种类数：");
             //Int32.TryParse(Console.ReadLine(),out total_num);
-            order_num = q;
-            customer = w;
-            total_num = e;
-            total_price = r;
+            order_num = onum;
+            customer = cus;
+            total_num = tnum;
+            total_price = tp;
             details = list;
             //for (;total_num>0;total_num--)
             //{
@@ -37,7 +38,11 @@ namespace Homework5
             //}
             //details.ForEach(s => total_price += (s.per_price*s.number));
         }
-        public List<OrderItem> details = new List<OrderItem>();
+        public Order()
+        {
+
+        }
+        public List<OrderItem> details { get; set; }
         public string order_num { get; set; }
         public string customer { get; set; }
         public int total_num { get; set; }

@@ -14,7 +14,8 @@ namespace Homework5
             OrderService orderService = new OrderService();
             while(true)
             {
-                Console.WriteLine("1,添加订单\t2,删除订单\t3,修改订单\t4,查找订单\t5,按订单号排序");
+                Console.WriteLine("1,添加订单\t2,删除订单\t3,修改订单\t4,查找订单\t" +
+                    "5,按订单号排序\t6,序列化保存\t7,反序列化读取");
                 string cho = Console.ReadLine();
                 try
                 {
@@ -25,12 +26,13 @@ namespace Homework5
                         case "3": Exorder(orderService); break;
                         case "4": Searchorder(orderService); break;
                         case "5": Sort(orderService);break;
+                        case "6": orderService.Export();break;
+                        case "7": orderService.Import();break;
                     }
-                }catch(Exception e)
+                }catch(Exception e) 
                 {
                     Console.WriteLine(e.Message);
                 }
-
             }
         }
         static void Sort(OrderService orderService)

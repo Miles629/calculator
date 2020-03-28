@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Homework5
 {
-    class OrderService
+    [Serializable]
+    public class OrderService
     {
-        List<Order> orders = new List<Order>();
+        public List<Order> orders = new List<Order>();
+        public OrderService()
+        {
+        }
         public void AddOrder(string q, string w, int e, double r, List<OrderItem> list)
         {
             Order o = new Order(q, w, e, r, list);
@@ -98,6 +104,22 @@ namespace Homework5
                     select s;
             //List<Order> list = q.ToList();
             return q;
+        }
+        public void Export()
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof (List<Order>));
+            using (FileStream fs = new FileStream("Orders.xml",FileMode.Create))
+            {
+                xmlSerializer.Serialize(fs,orders);
+            }
+        }
+        public void Import()
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs=new FileStream("Orders.xml", FileMode.Open))
+            {
+                orders = (List<Order>)xmlSerializer.Deserialize(fs);
+            }
         }
     }
 }
