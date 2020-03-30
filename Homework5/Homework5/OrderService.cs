@@ -30,6 +30,10 @@ namespace Homework5
             }
             orders.Add(o);
         }
+        public void AddOrder(Order o)
+        {
+            orders.Add(o);
+        }
         public void Sort()
         {
             //只写了默认以订单号排序，自定义排序无非是要分情况多写几个，今天太累了不写了。。。
