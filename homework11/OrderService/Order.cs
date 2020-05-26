@@ -9,75 +9,68 @@ using System.Xml.Serialization;
 
 namespace OrderApp {
 
-  /**
+    /**
    **/
-  public class Order:IComparable<Order>{
+    public class Order:IComparable<Order>{
 
-    [Key]
-    public string Id { get; set; }
+        [Key]
+        public string OrderId { get; set; }
 
-    public String CustomerId { get; set; }
+        public DateTime Time { get; set; }
+        public string Customer { get; set; }
 
-    [ForeignKey("CustomerId")]
-    public Customer Customer { get; set; }
-    
-    public DateTime CreateTime { get; set; }
+        public List<OrderItem> Items { get; set; }
 
-    public List<OrderItem> Items { get; set; }
+        public Order() {
+            OrderId = Guid.NewGuid().ToString();
+            Items = new List<OrderItem>();
+            Time = DateTime.Now;
+        }
 
-    public string CustomerName { get => (Customer != null) ? Customer.Name : ""; }
+        public Order(List<OrderItem> items):this() {
+            this.Time = DateTime.Now;
+            if (items != null) Items = items;
+        }
 
+        public double TotalPrice {
+            get=>Items.Sum(item => item.TotalPrice);
+        }
 
-    public Order() {
-      Id = Guid.NewGuid().ToString();
-      Items = new List<OrderItem>();
-      CreateTime = DateTime.Now;
+        public bool AddItem(OrderItem orderItem) {
+            if(Items.Contains(orderItem))
+                throw new ApplicationException("订单项已存在!");
+            Items.Add(orderItem);
+            return true;
+        }
+
+        public void RemoveItem(OrderItem orderItem) {
+            Items.Remove(orderItem);
+        }
+
+        public override string ToString() {
+            string r;
+            r = $"Id:{OrderId},orderTime:{Time},totalPrice：{TotalPrice}\n\t";
+            foreach (OrderItem oi in Items)
+            {
+                r = r + oi.ToString();
+            }
+            return r;
+        }
+
+        public override bool Equals(object obj) {
+            var m = obj as Order;
+            return m != null &&
+                   OrderId == m.OrderId && m.TotalPrice == TotalPrice;
+        }
+
+        public override int GetHashCode() {
+            int i;
+            Int32.TryParse(OrderId, out i);
+            return i;
+        }
+        public int CompareTo(Order other) {
+            if (other.OrderId == this.OrderId) return 1;
+            return 0;
+        }
     }
-
-    public Order(Customer customer, List<OrderItem> items):this() {
-      this.Customer = customer;
-      this.CreateTime = DateTime.Now;
-      if (items != null) Items = items;
-    }
-
-    public double TotalPrice {
-      get =>Items==null?0: Items.Sum(item => item.TotalPrice);
-    }
-
-    public void AddItem(OrderItem orderItem) {
-      if(Items.Contains(orderItem))
-        throw new ApplicationException($"添加错误：订单项已经存在!");
-      Items.Add(orderItem);
-    }
-
-    public void RemoveItem(OrderItem orderItem) {
-      Items.Remove(orderItem);
-    }
-
-    public override string ToString() {
-      StringBuilder strBuilder = new StringBuilder();
-      strBuilder.Append($"Id:{Id}, customer:{Customer},orderTime:{CreateTime},totalPrice：{TotalPrice}");
-      Items.ForEach(od => strBuilder.Append("\n\t" + od));
-      return strBuilder.ToString() ;
-    }
-
-    public override bool Equals(object obj) {
-      var order = obj as Order;
-      return order != null &&
-             Id == order.Id;
-    }
-
-    public override int GetHashCode() {
-      var hashCode = -531220479;
-      hashCode = hashCode * -1521134295 + Id.GetHashCode();
-      hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CustomerName);
-      hashCode = hashCode * -1521134295 + CreateTime.GetHashCode();
-      return hashCode;
-    }
-
-    public int CompareTo(Order other) {
-      if (other == null) return 1;
-      return this.Id.CompareTo(other.Id);
-    }
-  }
 }

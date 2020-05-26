@@ -6,35 +6,34 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OrderApp {
-  public class Goods {
-    [Key]
-    public string ID { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
+    public class Goods {
+        [Key]
+        public string GoodID { get; set; }
+        public string Name { get; set; }
+        public double perPrice { get; set; }
 
-    public Goods() {
-    }
+        public Goods() {
+        }
 
-    public Goods(string name, double price) {
-      ID = Guid.NewGuid().ToString();
-      Name = name;
-      Price = price;
-    }
+        public Goods(string name, double price) {
+            GoodID = Guid.NewGuid().ToString();
+            Name = name;
+            perPrice = price;
+        }
 
-    public override bool Equals(object obj) {
-      var goods = obj as Goods;
-      return goods != null &&
-             ID == goods.ID &&
-             Name == goods.Name;
-    }
+        public override bool Equals(object obj) {
+            var goods = obj as Goods;
+            return goods != null &&
+                   GoodID == goods.GoodID &&
+                   Name == goods.Name;
+        }
 
-    public override int GetHashCode() {
-      var hashCode = 1479869798;
-      hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ID);
-      hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-      return hashCode;
+        public override int GetHashCode() {
+            int hashCode;
+            Int32.TryParse(GoodID, out hashCode);
+            return hashCode;
+        }
     }
-  }
 
 
 }

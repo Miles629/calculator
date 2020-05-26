@@ -10,35 +10,45 @@ using System.Windows.Forms;
 using OrderApp;
 
 namespace OrderForm {
-  public partial class FormItemEdit : Form {
-    public OrderItem OrderItem { get; set; }
+    public partial class FormItemEdit : Form {
+        public OrderItem OrderItem { get; set; }
 
-    public FormItemEdit() {
-      InitializeComponent();
+        public FormItemEdit() {
+            InitializeComponent();
+        }
+
+        public FormItemEdit(OrderItem orderItem):this() {
+            this.OrderItem = orderItem;
+            this.ItemBindingSource.DataSource = orderItem;
+            List<Goods> goods = GoodsService.GetAll();
+            if (goods.Count == 0) {
+                GoodsService.Add(new Goods("apple", 100.0));
+                GoodsService.Add(new Goods("egg", 200.0));
+                goods= GoodsService.GetAll();
+            }
+            goodsBindingSource.DataSource = goods;
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e) {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            ItemBindingSource.ResetBindings(false);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-
-    public FormItemEdit(OrderItem orderItem):this() {
-      this.OrderItem = orderItem;
-      this.ItemBindingSource.DataSource = orderItem;
-      List<Goods> goods = GoodsService.GetAll();
-      if (goods.Count == 0) {
-        GoodsService.Add(new Goods("apple", 100.0));
-        GoodsService.Add(new Goods("egg", 200.0));
-        goods= GoodsService.GetAll();
-      }
-      goodsBindingSource.DataSource = goods;
-    }
-
-    private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {
-
-    }
-
-    private void label4_Click(object sender, EventArgs e) {
-
-    }
-
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-      ItemBindingSource.ResetBindings(false);
-    }
-  }
 }

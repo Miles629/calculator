@@ -100,8 +100,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerService.cs" />
     <Compile Include="Goods.cs" />
     <Compile Include="GoodsService.cs" />
     <Compile Include="MainClass.cs" />

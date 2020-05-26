@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace OrderApp {
 
-  class MainClass {
-    public static void Main() {
-      try {
+    class MainClass {
+        public static void Main() {
+            try {
 
-        using (var db = new OrderContext()) {
-         var order=db.OrderItems.FirstOrDefault();
+                using (var db = new OrderContext()) {
+                    var order=db.OrderItems.FirstOrDefault();
          
-        }
+                }
         
 
-      }catch (Exception e) {
-        Console.WriteLine(e.Message);
-        Console.WriteLine(e.StackTrace);
-      }
+            }catch (Exception e) {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
 
+        }
     }
-  }
 }
