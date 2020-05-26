@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Homework5\Homework5.csproj">
+    <ProjectReference Include="..\Homework5\Homework6.csproj">
       <Project>{93D69E69-C97A-4210-8E03-DC384CFF37B4}</Project>
-      <Name>Homework5</Name>
+      <Name>Homework6</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

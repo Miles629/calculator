@@ -80,35 +80,5 @@ namespace Homework5.Tests
             Assert.AreEqual(3, service.orders.Count);
             Assert.Fail();
         }
-
-        [TestMethod()]
-        public void Search_order_numTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void Search_commoditLy_nameTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void Search_customerTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ExportTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ImportTest()
-        {
-            Assert.Fail();
-        }
     }
 }
