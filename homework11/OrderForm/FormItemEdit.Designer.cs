@@ -1,4 +1,4 @@
-﻿namespace OrderForm {
+﻿namespace Homework11Form {
   partial class FormItemEdit {
     /// <summary>
     /// Required designer variable.
@@ -102,11 +102,11 @@
             // 
             // ItemBindingSource
             // 
-            this.ItemBindingSource.DataSource = typeof(OrderApp.OrderItem);
+            this.ItemBindingSource.DataSource = typeof(Homework11.OrderItem);
             // 
             // goodsBindingSource
             // 
-            this.goodsBindingSource.DataSource = typeof(OrderApp.Goods);
+            this.goodsBindingSource.DataSource = typeof(Homework11.Item);
             // 
             // label2
             // 

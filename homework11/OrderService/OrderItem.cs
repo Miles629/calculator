@@ -6,52 +6,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderApp {
+namespace Homework11 {
 
-    /**
-   **/
     public class OrderItem {
 
         [Key]
         public string Id { get; set; }
-
-        public int Index { get; set; } //序号
-
-        public string GoodsItemId { get; set; }
-
+        public int Index { get; set; } 
         [ForeignKey("GoodsItemId")]
-        public Goods GoodsItem { get; set; }
-
-        public String GoodsName { get => GoodsItem != null ? this.GoodsItem.Name : ""; }
-
-        public double UnitPrice { get => GoodsItem != null ? this.GoodsItem.perPrice : 0.0; }
-
+        public Item Item { get; set; }
+        public String Itemname { get => Item != null ? this.Item.Name : ""; }
         public string OrderId { get; set; }
-
-        public int Quantity { get; set; }
-
+        public int number { get; set; }
         public OrderItem() {
             Id = Guid.NewGuid().ToString();
         }
 
-        public OrderItem(int index, Goods goods, int quantity) : this() {
+        public OrderItem(int index, Item goods, int quantity) : this() {
             this.Index = index;
-            this.GoodsItem = goods;
-            this.Quantity = quantity;
+            this.Item = goods;
+            this.number = quantity;
         }
 
         public double TotalPrice {
-            get => GoodsItem.perPrice * Quantity;
+            get => Item.perPrice * number;
         }
 
         public override string ToString() {
-            return $"[No.:{Index},goods:{GoodsName},quantity:{Quantity},totalPrice:{TotalPrice}]";
+            return $"[No.:{Index},goods:{Itemname},quantity:{number},totalPrice:{TotalPrice}]";
         }
 
         public override bool Equals(object obj) {
             var item = obj as OrderItem;
             return item != null &&
-                   GoodsName == item.GoodsName;
+                   Itemname == item.Itemname;
         }
 
         public override int GetHashCode() {

@@ -1,4 +1,4 @@
-﻿namespace OrderForm
+﻿namespace Homework11Form
 {
     partial class FormMain
     {
@@ -76,7 +76,7 @@
             // 
             // orderBindingSource
             // 
-            this.orderBindingSource.DataSource = typeof(OrderApp.Order);
+            this.orderBindingSource.DataSource = typeof(Homework11.Order);
             // 
             // openFileDialog1
             // 

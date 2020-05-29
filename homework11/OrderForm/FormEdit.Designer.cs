@@ -1,4 +1,4 @@
-﻿namespace OrderForm
+﻿namespace Homework11Form
 {
     partial class FormEdit
     {
@@ -57,7 +57,7 @@
             // 
             // orderBindingSource
             // 
-            this.orderBindingSource.DataSource = typeof(OrderApp.Order);
+            this.orderBindingSource.DataSource = typeof(Homework11.Order);
             // 
             // itemsBindingSource
             // 
@@ -88,7 +88,7 @@
             this.btnDeleteItem.TabIndex = 7;
             this.btnDeleteItem.Text = "删除商品项";
             this.btnDeleteItem.UseVisualStyleBackColor = true;
-            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
+            this.btnDeleteItem.Click += new System.EventHandler(this.DeleteItem);
             // 
             // btnEditItem
             // 
@@ -116,7 +116,7 @@
             this.btnAddItem.TabIndex = 5;
             this.btnAddItem.Text = "添加商品项";
             this.btnAddItem.UseVisualStyleBackColor = true;
-            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            this.btnAddItem.Click += new System.EventHandler(this.AddItem);
             // 
             // btnSave
             // 

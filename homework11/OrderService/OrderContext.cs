@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderApp {
+namespace Homework11 {
     public class OrderContext : DbContext {
 
         public OrderContext() : base("OrderDatabase") {
@@ -15,7 +15,7 @@ namespace OrderApp {
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Goods> GoodItems { get; set; }
+        public DbSet<Item> GoodItems { get; set; }
 
     }
 }

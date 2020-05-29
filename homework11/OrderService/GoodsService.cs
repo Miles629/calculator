@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderApp {
+namespace Homework11 {
     public class GoodsService {
 
-        public static void Add(Goods goods) {
+        public static void Add(Item goods) {
             try {
                 using (var db = new OrderContext()) {
                     db.GoodItems.Add(goods);
@@ -20,7 +20,7 @@ namespace OrderApp {
             }
         }
 
-        public static List<Goods> GetAll() {
+        public static List<Item> GetAll() {
             using (var db = new OrderContext()) {
                 return db.GoodItems.ToList();
             }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrderForm.Properties
+namespace Homework11Form.Properties
 {
 
 

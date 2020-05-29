@@ -5,32 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderApp {
-    public class Goods {
+namespace Homework11 {
+    public class Item {
         [Key]
-        public string GoodID { get; set; }
+        public string ItemID { get; set; }
         public string Name { get; set; }
         public double perPrice { get; set; }
 
-        public Goods() {
+        public Item() {
         }
 
-        public Goods(string name, double price) {
-            GoodID = Guid.NewGuid().ToString();
+        public Item(string name, double price) {
+            ItemID = Guid.NewGuid().ToString();
             Name = name;
             perPrice = price;
         }
 
         public override bool Equals(object obj) {
-            var goods = obj as Goods;
+            var goods = obj as Item;
             return goods != null &&
-                   GoodID == goods.GoodID &&
+                   ItemID == goods.ItemID &&
                    Name == goods.Name;
         }
 
         public override int GetHashCode() {
             int hashCode;
-            Int32.TryParse(GoodID, out hashCode);
+            Int32.TryParse(ItemID, out hashCode);
             return hashCode;
         }
     }

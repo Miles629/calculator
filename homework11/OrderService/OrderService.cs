@@ -5,74 +5,63 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace OrderApp {
-
-    /**
-   * The service class to manage orders
-   * */
+namespace Homework11 {
     public class OrderService {
         public static OrderContext db=new OrderContext();
         public OrderService() {
         }
-        private static IQueryable<Order> getOrders()
-        {
-            return db.Orders.Include(o => o.Items.Select(i => i.GoodsItem));
-        }
+        
         public static List<Order> GetAllOrdersList() {
             return getOrders().ToList();
         }
-
         public static Order GetOrder(string id) {
             return getOrders().FirstOrDefault(o => o.OrderId == id);
         }
 
-        public static bool AddOrder(Order order) {
+        public static void AddOrder(Order order) {
             try {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return true;
             }
             catch (Exception e) {
-                throw new ApplicationException($"添加错误: {e.Message}");
+                throw new ApplicationException(e.Message);
             }
         }
-
-        public static bool RemoveOrder(string id) {
-            try {
+        private static IQueryable<Order> getOrders()
+        {
+            return db.Orders.Include(o => o.Items.Select(i => i.Item));
+        }
+        public static void RemoveOrder(string id) {
+            try
+            {
                 var order = db.Orders.Include("Items").Where(o => o.OrderId == id).FirstOrDefault();
                 db.Orders.Remove(order);
                 db.SaveChanges();
-                return true;
             }
-            catch (Exception e) {
-                throw new ApplicationException($"删除订单错误!");
+            catch (Exception e)
+            {
+                throw e;
             }
         }
-
-        public static bool UpdateOrder(Order newOrder) {
-            RemoveItems(newOrder.OrderId);
-            db.Entry(newOrder).State = EntityState.Modified;
-            db.OrderItems.AddRange(newOrder.Items);
-            db.SaveChanges();
-            return true;
-        }
-
-        private static bool RemoveItems(string orderId) {
+        private static void RemoveItems(string orderId)
+        {
             var oldItems = db.OrderItems.Where(item => item.OrderId == orderId);
             db.OrderItems.RemoveRange(oldItems);
             db.SaveChanges();
-            return true;
         }
-
+        public static void UpdateOrder(Order newOrder) {
+            RemoveItems(newOrder.OrderId);
+            db.OrderItems.AddRange(newOrder.Items);
+            db.Entry(newOrder).State = EntityState.Modified;
+            db.SaveChanges();
+        }
         public static List<Order> SearchByGoodsName(string goodsName) {
-            var query = getOrders()
-                .Where(o => o.Items.Count(i => i.GoodsItem.Name == goodsName) > 0);
+            var query = getOrders().Where(o => o.Items.Count(i => i.Item.Name == goodsName) > 0);
             return query.ToList();
         }
 
         public static List<Order> SearchByCustomerName(string customerName) {
-            var query = getOrders()
-                .Where(o => o.Customer == customerName);
+            var query = getOrders().Where(o => o.custmer == customerName);
             return query.ToList();
         }
 

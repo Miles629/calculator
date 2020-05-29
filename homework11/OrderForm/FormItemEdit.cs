@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OrderApp;
+using Homework11;
 
-namespace OrderForm {
+namespace Homework11Form {
     public partial class FormItemEdit : Form {
         public OrderItem OrderItem { get; set; }
 
@@ -20,11 +20,15 @@ namespace OrderForm {
         public FormItemEdit(OrderItem orderItem):this() {
             this.OrderItem = orderItem;
             this.ItemBindingSource.DataSource = orderItem;
-            List<Goods> goods = GoodsService.GetAll();
+            List<Item> goods = GoodsService.GetAll();
             if (goods.Count == 0) {
-                GoodsService.Add(new Goods("apple", 100.0));
-                GoodsService.Add(new Goods("egg", 200.0));
-                goods= GoodsService.GetAll();
+                GoodsService.Add(new Item("apple", 100.0));
+                GoodsService.Add(new Item("egg", 200.0));
+                GoodsService.Add(new Item("banana", 300.0));
+                GoodsService.Add(new Item("pen", 799));
+                GoodsService.Add(new Item("ipad", 7000));
+                GoodsService.Add(new Item("bag", 1));
+                goods = GoodsService.GetAll();
             }
             goodsBindingSource.DataSource = goods;
         }

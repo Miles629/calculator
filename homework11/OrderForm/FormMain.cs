@@ -1,4 +1,4 @@
-﻿using OrderApp;
+﻿using Homework11;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderForm {
+namespace Homework11Form {
     public partial class FormMain : Form {
         BindingSource fieldsBS = new BindingSource();
         public String Keyword { get; set; }
@@ -19,7 +19,20 @@ namespace OrderForm {
             orderBindingSource.DataSource = OrderService.GetAllOrdersList();
             txtValue.DataBindings.Add("Text", this, "Keyword");
         }
-
+        //这是一个综合搜索的方法
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            Order order = OrderService.GetOrder(Keyword);
+            List<Order> result = new List<Order>();
+            if (order != null)
+                result.Add(order);
+            else result = OrderService.SearchByGoodsName(Keyword);
+            if (result == null)
+                result = OrderService.SearchByCustomerName(Keyword);
+            orderBindingSource.DataSource = result;
+            orderBindingSource.ResetBindings(true);
+        }
+        //添加
         private void btnAdd_Click_1(object sender, EventArgs e) {
             FormEdit form2 = new FormEdit(new Order());
             if (form2.ShowDialog() == DialogResult.OK) {
@@ -27,12 +40,17 @@ namespace OrderForm {
                 QueryAll();
             }
         }
-
         private void QueryAll() {
             orderBindingSource.DataSource = OrderService.GetAllOrdersList();
             orderBindingSource.ResetBindings(false);
         }
-
+        //删除
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Order order = orderBindingSource.Current as Order;
+            OrderService.RemoveOrder(order.OrderId);
+            QueryAll();
+        }
         private void btnModify_Click(object sender, EventArgs e) {
             EditOrder();
         }
@@ -64,12 +82,7 @@ namespace OrderForm {
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            Order order = orderBindingSource.Current as Order;
-            OrderService.RemoveOrder(order.OrderId);
-            QueryAll();
-        }
+
 
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -92,17 +105,6 @@ namespace OrderForm {
             }
         }
 
-        private void btnQuery_Click(object sender, EventArgs e)
-        {
-            Order order = OrderService.GetOrder(Keyword);
-            List<Order> result = new List<Order>();
-            if (order != null)
-                result.Add(order);
-            else result = OrderService.SearchByGoodsName(Keyword);
-            if (result == null)
-                result = OrderService.SearchByCustomerName(Keyword);
-            orderBindingSource.DataSource = result;
-            orderBindingSource.ResetBindings(true);
-        }
+
     }
 }

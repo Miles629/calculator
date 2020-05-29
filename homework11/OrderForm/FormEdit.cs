@@ -1,4 +1,4 @@
-﻿using OrderApp;
+﻿using Homework11;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderForm {
+namespace Homework11Form {
     public partial class FormEdit : Form {
         public Order CurrentOrder { get; set; }
 
@@ -25,7 +25,7 @@ namespace OrderForm {
             txtOrderId.Enabled = !editMode;
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e) {
+        private void AddItem(object sender, EventArgs e) {
             FormItemEdit formItemEdit = new FormItemEdit(new OrderItem());
             try {
                 if (formItemEdit.ShowDialog() == DialogResult.OK) {
@@ -42,47 +42,47 @@ namespace OrderForm {
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e) {
-            //TODO 加上订单合法性验证
-            CurrentOrder.Items.ForEach(item => {
-                item.GoodsItemId = item.GoodsItem.GoodID;
-                item.GoodsItem = null;
-                item.OrderId = CurrentOrder.OrderId;
-            });
-
-            this.Close();
-        }
-
-        private void btnEditItem_Click(object sender, EventArgs e) {
-            EditItem();
-        }
-
-        private void dgvItems_DoubleClick(object sender, EventArgs e) {
-            EditItem();
-        }
-
-        private void EditItem() {
+        private void DeleteItem(object sender, EventArgs e)
+        {
             OrderItem orderItem = itemsBindingSource.Current as OrderItem;
-            if (orderItem == null) {
-                MessageBox.Show("请选择一个订单项");
-                return;
-            }
-            FormItemEdit formItemEdit = new FormItemEdit(orderItem);
-            if (formItemEdit.ShowDialog() == DialogResult.OK) {
-                itemsBindingSource.ResetBindings(false);
-            }
-        }
-
-        private void btnDeleteItem_Click(object sender, EventArgs e) {
-            OrderItem orderItem = itemsBindingSource.Current as OrderItem;
-            if (orderItem == null) {
+            if (orderItem == null)
+            {
                 MessageBox.Show("请选择一个订单");
                 return;
             }
             CurrentOrder.RemoveItem(orderItem);
             itemsBindingSource.ResetBindings(false);
         }
+        private void btnSave_Click(object sender, EventArgs e) {
+            CurrentOrder.Items.ForEach(item => {
+                item.Item = null;
+                item.OrderId = CurrentOrder.OrderId;
+            });
 
+            this.Close();
+        }
+
+        private void Edit()
+        {
+            OrderItem orderItem = itemsBindingSource.Current as OrderItem;
+            if (orderItem == null)
+            {
+                MessageBox.Show("请选择一个订单项");
+                return;
+            }
+            FormItemEdit formItemEdit = new FormItemEdit(orderItem);
+            if (formItemEdit.ShowDialog() == DialogResult.OK)
+            {
+                itemsBindingSource.ResetBindings(false);
+            }
+        }
+        private void btnEditItem_Click(object sender, EventArgs e) {
+            Edit();
+        }
+
+        private void dgvItems_DoubleClick(object sender, EventArgs e) {
+            Edit();
+        }
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderForm
+namespace Homework11Form
 {
     static class Program
     {
